@@ -119,8 +119,8 @@
             <groupId>org.geoserver.security</groupId>
             <artifactId>gs-sec-ldap</artifactId>
         </dependency>
-        
-        <!--Web Processing Service extension-->
+
+        <!--Web Processing Service extension (needed for GeoPackage export)-->
         <dependency>
             <groupId>org.geoserver.extension</groupId>
             <artifactId>gs-wps-core</artifactId>
@@ -152,7 +152,12 @@
             <version>${project.version}</version>
         </dependency>
 
-
+        <!--WorldWind Format Module community plugig (bil/dds support)-->
+        <dependency>
+            <groupId>org.geoserver.community</groupId>
+            <artifactId>gs-dds</artifactId>
+        </dependency>    
+        
         <!-- GeoTools -->
         <dependency>
             <groupId>org.geotools.jdbc</groupId>
@@ -192,7 +197,7 @@
             <groupId>org.geotools</groupId>
             <artifactId>gt-imagepyramid</artifactId>
         </dependency>    
-         <!--WPS--> 
+        <!--WPS--> 
         <dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-process-geometry</artifactId>
