@@ -52,10 +52,13 @@ import org.geoserver.web.GeoServerSecuredPage;
 
 import com.google.common.collect.Lists;
 import gov.nasa.worldwind.geopkg.wps.GeoPackageProcessRequest.TilesLayer.TilesCoverage;
+import java.awt.Color;
 import java.util.Arrays;
 import java.util.Comparator;
 import javax.xml.namespace.QName;
-import org.apache.wicket.markup.html.form.FormComponent;
+import org.apache.wicket.model.ResourceModel;
+import org.geoserver.web.data.store.panel.ColorPickerPanel;
+import org.geoserver.web.util.MapModel;
 import org.geoserver.web.wicket.ColorPickerField;
 
 /**
@@ -63,6 +66,8 @@ import org.geoserver.web.wicket.ColorPickerField;
  * @author Bruce Schubert
  */
 public class ExportGeoPackagePage extends GeoServerSecuredPage {
+
+    private static final long serialVersionUID = 1L;
 
     //choices in dropdown box
     private static final List<String> FORMATS = Arrays.asList(new String[]{
@@ -76,8 +81,11 @@ public class ExportGeoPackagePage extends GeoServerSecuredPage {
     TextField<String> styles;
     TextField<String> tilesetName;
     TextField<String> filename;
+    TextField<String> bgcolor;
+    final ColorPickerPanel bgColorPanel;
     final BBoxPanel latLonPanel;
     final CoveragePanel coveragePanel;
+    String bgColor = "";
 
     /**
      * Default constructor
@@ -90,8 +98,10 @@ public class ExportGeoPackagePage extends GeoServerSecuredPage {
         Form form = new Form("form");
         add(form);
 
+        // Create a mandatory drop down to select the input layer
         layerChoice = initLayersDropDown("layer", form);
 
+        // 
         styles = new TextField<>("styles", new Model("raster")); // HACH until a style selection is implemented
         form.add(styles);
 
@@ -110,38 +120,44 @@ public class ExportGeoPackagePage extends GeoServerSecuredPage {
         form.add(new TextField<>("identifier", new PropertyModel<>(tilesLayer, "identifier")));
         form.add(new TextField<>("desc", new PropertyModel<>(tilesLayer, "description")));
 
-        DropDownChoice<String> formats = new DropDownChoice<String>("mimeType", 
+        // Create an optional drop down for the GeoPackage tile image format
+        DropDownChoice<String> formats = new DropDownChoice<String>("mimeType",
                 new PropertyModel<>(tilesLayer, "format"), FORMATS);
         form.add(formats);
-        
-//        form.add(new ColorPickerField("bkgdColor", new PropertyModel<>(tilesLayer, "bgColor")));
-        TextField<Object> color = new TextField<>("bkgdColor", new PropertyModel<>(tilesLayer, "bgColor"));
-        color.setEnabled(false);  // Problematic -- disabled until solved.
-        form.add(color);
-        
+
+        // The ColorPickerPanel returns and RGB hex string prefixed with "#"
+        bgColorPanel = new ColorPickerPanel("backgroundColor",
+                new PropertyModel<>(this, "bgColor"), // value 
+                new ResourceModel("ExportGeoPackagePage.bkgdColor"), // Get the label from i8n properties 
+                false); // required
+        form.add(bgColorPanel);
+
         form.add(new CheckBox("transparent", new PropertyModel<>(tilesLayer, "transparent")));
 
-        // lat/lon bbox
+        // Create a panel to get the Lat/Lon bounding box used for subsetting
         latLonPanel = new BBoxPanel("latLonBoundingBox", tilesLayer.getBbox());
         latLonPanel.setOutputMarkupId(true);
         latLonPanel.setRequired(true);
         form.add(latLonPanel);
-
-        coveragePanel = new CoveragePanel("tilesCoverage", tilesLayer.getCoverage());
-        coveragePanel.setOutputMarkupId(true);
-//        coveragePanel.setRequired(true);
-        form.add(coveragePanel);
-
+        
+        // Add a link to compute the lat/lon from the input layer
         initLatLonBoundsLink("computeLatLon", form, layerChoice, latLonPanel);
 
+        // Create a panel to get the min/max zoom levels
+        coveragePanel = new CoveragePanel("tilesCoverage", tilesLayer.getCoverage());
+        coveragePanel.setOutputMarkupId(true);
+        form.add(coveragePanel);
+
+        // Create the modal window used to display the WPS response
         ModalWindow responseWindow = initResponseWindow("responseWindow");
         add(responseWindow);
 
+        // Create the modal window used to display the generated XML
         ModalWindow xmlWindow = initXmlWindow("xmlWindow", responseWindow);
         add(xmlWindow);
 
+        // Add the buttons
         initExecuteButton("executeProcess", form, responseWindow);
-
         initXmlButton("executeXML", form, xmlWindow);
 
     }
@@ -383,23 +399,60 @@ public class ExportGeoPackagePage extends GeoServerSecuredPage {
     }
 
     /**
-     * Returns the WPS request XML based on the form's contents.
+     * Updates the GeoPackageProcessRequest from the form's model objects.
+     * Several form fields are not mapped directly to the request's properties.
+     * These fields must undergo a conversion before updating the request.
      *
-     * @return WPS request XML
      */
-    String getRequestXML() {
+    private void updateRequest() {
         // Update the request from the form before the transformation
         LayerInfo layer = layerChoice.getModelObject();
-        Envelope bbox = latLonPanel.getModelObject();
-        TilesCoverage coverage = coveragePanel.getModelObject();
+        tilesLayer.setLayers(Arrays.asList(new QName(layer.prefixedName())));
+
         String stylesList = styles.getModelObject();
         if (stylesList != null) {
             List<String> list = Arrays.asList(stylesList.split(","));
             tilesLayer.setStyles(list);
         }
-        tilesLayer.setLayers(Arrays.asList(new QName(layer.prefixedName())));
+
+        Envelope bbox = latLonPanel.getModelObject();
         tilesLayer.setBbox(bbox);
+
+        TilesCoverage coverage = coveragePanel.getModelObject();
         tilesLayer.setCoverage(coverage);
+
+        if (bgColor != null) {
+            tilesLayer.setBgColor(decodeColor(bgColor));
+        }
+    }
+
+    Color decodeColor(String hexString) {
+        try {
+            if (!hexString.startsWith("#")) {
+                hexString = "#" + hexString;
+            }
+            if (hexString.length() == 7) {
+                // Decode RGB
+                return Color.decode(hexString);
+            } else if (hexString.length() == 9) {
+                // Decode ARGB 
+                return new Color(Long.decode(hexString).intValue(), /*has alpha*/ true);
+            }
+        } catch (NumberFormatException e) {
+            LOGGER.log(Level.SEVERE, "Color hex string is not valid: %s", hexString);
+            error(e);
+        }
+        return null;
+    }
+
+    /**
+     * Returns the WPS request XML based on the form's contents.
+     *
+     * @return WPS request XML
+     */
+    String getRequestXML() {
+        // Update the request from the form content's
+        updateRequest();
 
         // Setup a transformer to translate the GeoPackageProcessRequest into XML
         GeoPackageProcessRequestTransformer transformer = new GeoPackageProcessRequestTransformer();

@@ -17,8 +17,11 @@
  */
 package gov.nasa.worldwind.gs.geopkg.web;
 
+import java.awt.Color;
 import org.geoserver.web.GeoServerWicketTestSupport;
 import static org.geoserver.web.GeoServerWicketTestSupport.tester;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import org.junit.Test;
 
 /**
@@ -40,6 +43,31 @@ public class ExportGeoPackagePageTest extends GeoServerWicketTestSupport {
         tester.assertRenderedPage(ExportGeoPackagePage.class);
         tester.assertNoErrorMessage();
 
+    }
+    @Test
+    public void testDecodeColor() {
+        ExportGeoPackagePage page = new ExportGeoPackagePage();
+        
+        Color rgbWhiteHex = page.decodeColor("#ffffff");
+        assertEquals(Color.white, rgbWhiteHex);
+
+        Color rgbWhite = page.decodeColor("ffffff");
+        assertEquals(Color.white, rgbWhite);
+
+        Color rgbaWhite = page.decodeColor("ffffffff");
+        assertEquals(Color.white, rgbaWhite);
+
+        Color empty = page.decodeColor("");
+        assertNull(empty);
+        
+        Color tooShort = page.decodeColor("ff");
+        assertNull(tooShort);
+
+        Color tooBig = page.decodeColor("ffffffffff");
+        assertNull(tooBig);
+
+        Color invalid = page.decodeColor("not a color string");
+        assertNull(invalid);
     }
 
 }
