@@ -4,12 +4,11 @@
 # Setup memory allocation for the World Wind Server Kit (WWSK) - Linux 
 # -----------------------------------------------------------------------------
 
-# Paths
-PWD=$(pwd)
 # Display a simple menu to configure the JVM heap memory allocation for Jetty/GeoServer
 echo
-echo "Configuring the JVM heap memory allocation for Jetty/GeoServer..."
-echo "The current allocation (Xms=min, Xmx=max; Blank=auto):" `grep ^HEAP env.sh`
+echo "Configuring the JVM heap memory allocation for Jetty/GeoServer."
+echo "The current allocation is: " `grep ^HEAP env.sh` " (Xms=min, Xmx=max, Blank=auto)"
+echo
 echo "Memory allocation options:"
 PS3="Select a memory allocation option: "
 select MEM_CHOICE in Auto 1GB 1.5GB 2GB 4GB 8GB Other Skip Help
@@ -45,20 +44,20 @@ do
         echo "Enter an integer followed 'm' for megabytes or 'g' for gigabytes, e.g., for 1GB enter 1024m or 1g:"
         read AMOUNT
         # Assert something was entered
-        if [ ! -z $AMOUNT ]; then
+        if ! [ -z $AMOUNT ]; then
             # Assert megabytes/gigabytes is specified
-            if [[ ! $AMOUNT == *[g,m,G,M] ]]; then
+            if ! [[ $AMOUNT == *[g,m,G,M] ]]; then
                 echo "Memory unit-of-measure must be specified. Use 'm' for megabytes or 'g' for gigabytes."
                 echo
                 continue
             else
                 # Assert the value in front of the UOM is an integer and it is > 0 
                 VALUE=${AMOUNT%[g,m,G,M]}
-                if ! [ "$VALUE" -eq "$VALUE" ] 2> /dev/null; then  # -eq generates an error if not an integer
+                if ! [ $VALUE -eq $VALUE ] 2> /dev/null; then  # -eq generates an error if not an integer
                     echo "Value must be an integer followed by 'm' or 'g'."
                     echo
                     continue
-                elif ! [[ $VALUE -gt 0 ]]; then
+                elif ! [ $VALUE -gt 0 ]; then
                     echo "Value must be greater than zero."
                     echo
                     continue
