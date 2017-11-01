@@ -1,0 +1,108 @@
+{
+  "performanceData":
+  [
+    {
+      "min": 1,
+      "max": 5830,
+      "quantile90": 282,
+      "average": 201,
+      "total": 1485,
+      "statusCodes":{
+                      "200": 1485
+                    },
+      "uriByStatusCode":{
+                          "200": [
+                                  "HTTP /geoserver/ows?service=wms&version=1.1.1&request=GetCapabilities",
+                                  "HTTP /geoserver/gwc/service/tms/1.0.0",
+                                  "HTTP /geoserver/ows?service=wps&version=1.0.0&request=GetCapabilities",
+                                  "HTTP /geoserver/ows?service=wfs&version=1.0.0&request=GetCapabilities",
+                                  "HTTP /geoserver/ows?service=WCS&version=1.1.0&request=GetCapabilities",
+                                  "HTTP /geoserver/ows?service=wfs&version=1.1.0&request=GetCapabilities",
+                                  "HTTP /geoserver/ows?service=WCS&version=1.1&request=GetCapabilities",
+                                  "HTTP /geoserver/gwc/service/wmts?REQUEST=GetCapabilities",
+                                  "HTTP /geoserver/ows?service=wms&version=1.3.0&request=GetCapabilities",
+                                  "HTTP /geoserver/web/",
+                                  "HTTP /geoserver/ows?service=wfs&version=2.0.0&request=GetCapabilities",
+                                  "HTTP /geoserver/gwc/service/wms?request=GetCapabilities&version=1.1.1&tiled=true",
+                                  "HTTP /geoserver/ows?service=WCS&version=1.0.0&request=GetCapabilities",
+                                  "HTTP /geoserver/ows?service=WCS&version=1.1.1&request=GetCapabilities",
+                                  "HTTP /geoserver/index.html",
+                                  "HTTP /geoserver/explorer/index.html"
+                                 ]
+                        }
+    }    {
+      "min": 196,
+      "max": 12980,
+      "quantile90": 3671,
+      "average": 2225,
+      "total": 139,
+      "statusCodes":{
+                      "200": 139
+                    },
+      "uriByStatusCode":{
+                          "200": [
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:gtiff_image-jpeg&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fpng ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:gtiff_image&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fpng ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:jpeg_image&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fjpeg ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:jp2k_image&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fgeotiff ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:aaigrid_elevations&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fpng ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:gtiff_image-jpeg&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fgeotiff ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:gtiff_image&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fgeotiff ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:gtiff_image-jpeg&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fjpeg ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:jpeg_image&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fpng ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:gpkg_image&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fjpeg ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:gtiff_image&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fjpeg ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:jp2k_image&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fpng ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:gtiff_image-deflate&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fpng ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:gtiff_image-lzw&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fgeotiff ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:aaigrid_elevations&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fjpeg ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:gtiff_image-lzw&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fjpeg ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:png_image&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fjpeg ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:gpkg_image&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fpng ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:gtiff_image-deflate&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fgeotiff ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:gpkg_image&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fgeotiff ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:gtiff_image-lzw&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fpng ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:jpeg_image&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fgeotiff ",
+                                  "GetMap /geoserver/nasa/wms?service=WMS&version=1.1.0&request=GetMap&layers=nasa:world_topo_bathy_lowres&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image/jpeg ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:png_image&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fpng ",
+                                  "GetMap /geoserver/nasa/wms?service=WMS&version=1.1.0&request=GetMap&layers=nasa:world_topo_bathy_lowres&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image/png ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.0&request=GetMap&layers=test:gtiff_image-deflate&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fjpeg ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:aaigrid_elevations&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fgeotiff ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:jp2k_image&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fjpeg ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:png_image&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fgeotiff "
+                                 ]
+                        }
+    }    {
+      "min": 50,
+      "max": 2617,
+      "quantile90": 1760,
+      "average": 950,
+      "total": 316,
+      "statusCodes":{
+                      "200": 316
+                    },
+      "uriByStatusCode":{
+                          "200": [
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:nitf_image-jpeg&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fjpeg ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:ecw_image&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fgeotiff ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:ehdr_elevations&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fpng ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:nitf_image-jpeg&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fpng ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:dted_elevations&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fgeotiff ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:jp2ecw_image&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fpng ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:nitf_image-jpeg&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fgeotiff ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:dted_elevations&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fjpeg ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:jp2ecw_image&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fjpeg ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:ecw_image&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fpng ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:ecw_image&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fjpeg ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:dted_elevations&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fpng ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:nitf_image&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fpng ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:nitf_image&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fjpeg ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:jp2ecw_image&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fgeotiff ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:ehdr_elevations&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fjpeg ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:ehdr_elevations&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fgeotiff ",
+                                  "GetMap /geoserver/test/wms?service=WMS&version=1.1.1&request=GetMap&layers=test:nitf_image&styles=&bbox=-180.0,-90.0,180.0,90.0&width=768&height=384&srs=EPSG:4326&format=image%2Fgeotiff "
+                                 ]
+                        }
+    }
+  ]
+}
